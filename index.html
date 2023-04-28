@@ -1,0 +1,450 @@
+<html>
+    <head>
+        <title id="title">nerds.corp - Games</title>
+        <link id="icon" rel="icon" href="nerds-icon.ico" type="image/x-icon" />
+        <style>
+            :root {
+                --accentColor: #0000ff;
+                --switch: #cccccc;
+                --sciDisplay: hidden;
+                --gameWidth: 150px;
+                --gameHeight: 150px;
+            }
+
+            li {
+                list-style-type: disc;
+            }
+
+            * {
+                transition-duration: 0.25s;
+                font-family: arial;
+            }
+
+            .li-l {
+                color: #000000;
+            }
+
+            .li-d {
+                color: #ffffff;
+            }
+
+            .openbullet-l {
+                list-style-type: circle;
+                color: #000000;
+            }
+
+            .openbullet-d {
+                list-style-type: circle;
+                color: #ffffff;
+            }
+
+            .a-l {
+                color: var(--accentColor);
+            }
+
+            .a-d {
+                color: var(--accentColor);
+            }
+
+            .text-l {
+                color: #000000;
+            }
+
+            .text-d {
+                color: #ffffff;
+            }
+
+            .p-l {
+                color: #000000;
+            }
+
+            .p-d {
+                color: #ffffff;
+            }
+
+            input[type="radio"] {
+                accent-color: var(--accentColor);
+            }
+
+            #logoCenter {
+                width: 0px;
+                margin: auto 0;
+            }
+
+            #logoText {
+                font-size: 106px;
+                position: absolute;
+                top: 46px;
+                margin-left: -155px;
+                color: var(--accentColor);
+            }
+            .gamePanel {
+                display: flex;
+                width: var(--gameWidth);
+                height: var(--gameHeight);
+                color: rgba(255,255,255,0);
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin: 0px 0px 0px 0px;
+                cursor: pointer;
+                font-size: 28px;
+            }
+            .gamePanel:hover {
+                background-color: #e1e1e1;
+                color: rgba(255,255,255,1);
+                box-shadow: 0px 0px 40px rgba(0,0,0,0.8) inset;
+                text-shadow: 0px 1px rgb(0,0,0), 0px -1px rgb(0,0,0), 1px 0px rgb(0,0,0), -1px 0px rgb(0,0,0);
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <img id="logo" style="filter: brightness(0);" src="nerds-logo.png" alt="nerds.corp" width="375px" height="150px">
+            <div id="logoCenter">
+                <div id="logoText">nerds</div>
+            </div>
+            <h3>Please do <label style="color: #ff0000">not</label> play these during class. These games are for home unless you are given permission in school. The main purpose of nerds.corp is a place to play games on a chromebook <label style="color: #ff0000">in your free time!</label> Access will be revoked if you don't follow the rules. </h3>
+        </center>
+        <p></p>
+        <h2>Commands</h2>
+        <p></p>
+        <div style="display: table;">
+            <div style="margin-top: 10px; display: table-cell; vertical-align: middle;">
+                <p style="font-size: 20px;">Dark Mode</p>
+            </div>
+            <button id="app" class="switch" data-state="off" onclick="var slider = document.getElementById('appSlider'); var bar = document.getElementById('app'); let state = bar.getAttribute('data-state'); if (state == 'on') {bar.setAttribute('data-state', 'off'); slider.style.left = '3'; lightMode();} else {bar.setAttribute('data-state', 'on'); slider.style.left = '24'; bar.style.backgroundColor = '#34C85A'; darkMode();}" style="margin-left: 10px; background-color: var(--switch); border: none; padding: 0px; width: 52px; height: 31px; position: relative; border-radius: 16px; transition-duration: 0.25s; cursor: pointer;">
+                <div id="appSlider" style="background-color: #ffffff; width: 25px; height: 25px; position: absolute; top: 3; left: 3; transition-duration: 0.25s; border-radius: 100px; border: none; padding: 0px; box-shadow: 0px 2px 3px rgba(0,0,0,0.3); pointer-events: none;"></div>
+            </button>
+        </div>
+        <p></p>
+        <div style="display: table;">
+            <div style="margin-top: 10px; display: table-cell; vertical-align: middle;">
+                <p style="font-size: 20px; visibility: var(--sciDisplay);">Show Classroom Icon</p>
+            </div>
+            <button id="sci" class="switch" data-state="off" onclick="var slider = document.getElementById('sciSlider'); var bar = document.getElementById('sci'); let state = bar.getAttribute('data-state'); if (state == 'on') {bar.setAttribute('data-state', 'off'); slider.style.left = '3'; bar.style.backgroundColor = 'var(--switch)'; removeClassroomIcon();} else {bar.setAttribute('data-state', 'on'); slider.style.left = '24'; bar.style.backgroundColor = '#34C85A'; showClassroomIcon();}" style="visibility: var(--sciDisplay); margin-left: 10px; background-color: var(--switch); border: none; padding: 0px; width: 52px; height: 31px; position: relative; border-radius: 16px; transition-duration: 0.25s; cursor: pointer;">
+                <div id="sciSlider" style="visibility: var(--sciDisplay); background-color: #ffffff; width: 25px; height: 25px; position: absolute; top: 3; left: 3; transition-duration: 0.25s; border-radius: 100px; border: none; padding: 0px; box-shadow: 0px 2px 3px rgba(0,0,0,0.3); pointer-events: none;"></div>
+            </button>
+        </div>
+        <p></p>
+        <div id="accentColorSection">
+            <label style="font-size: 20px;">Accent Color</label>
+            <br>
+            <input type="radio" id="accentBlue" name="accentColor" value="blue" checked="true" oninput="setAccentColor()" style="color: var(--accentColor)">
+            <label for="accentBlue">Blue</label>
+            <br>
+            <input type="radio" id="accentGreen" name="accentColor" value="green" oninput="setAccentColor()">
+            <label for="accentGreen">Green</label>
+            <br>
+            <input type="radio" id="accentRed" name="accentColor" value="red" oninput="setAccentColor()">
+            <label for="accentRed">Red</label>
+            <br>
+            <input type="radio" id="accentOrange" name="accentColor" value="orange" oninput="setAccentColor()">
+            <label for="accentOrange">Orange</label>
+            <br>
+            <input type="radio" id="accentYellow" name="accentColor" value="yellow" oninput="setAccentColor()">
+            <label for="accentYellow">Yellow</label>
+            <br>
+            <input type="radio" id="accentPink" name="accentColor" value="pink" oninput="setAccentColor()">
+            <label for="accentPink">Pink</label>
+            <br>
+            <input type="radio" id="accentPurple" name="accentColor" value="purple" oninput="setAccentColor()">
+            <label for="accentPurple">Purple</label>
+            <br>
+            <input type="radio" id="accentRainbow" name="accentColor" value="rainbow" oninput="setAccentColor()">
+            <label for="accentRainbow">Rainbow</label>
+        </div>
+        <p></p>
+        <label style="font-size: 20px;">Suprise Me</label>
+        <p></p>
+        <button onclick="randomGame();" style="margin-left: 10px;  padding: 0px; position: relative; transition-duration: 0.25s; cursor: pointer;">Random Game</button>
+        <p></p>
+        <button onclick="randomAccentColor();" style="margin-left: 10px;  padding: 0px; position: relative; transition-duration: 0.25s; cursor: pointer;">Random Accent Color</button>
+        <h2>Games</h2>
+        <div id="games" style="padding: 0px; display: grid; grid-template-columns: 150px 150px 150px 150px 150px 150px 150px; width: 1050px; margin: 0 auto;">
+            <div class="gamePanel" data-link="https://programming4fun32.github.io/Bouncy-Ballz/" style="background-image: url('icons/bb.png')">Bouncy Ballz</div>
+            <div class="gamePanel" data-link="https://programming4fun32.github.io/Bred-Clicker/" style="background-image: url('icons/bc.png')">Bred Clicker</div>
+            <div class="gamePanel" data-link="https://programming4fun32.github.io/Circles/" style="background-image: url('icons/ci.png')">Circles</div>
+            <div class="gamePanel" data-link="gd.html" style="background-image: url('icons/gd.png')">Geometry Dash</div>
+            <div class="gamePanel" data-link="Offline_Download_Version.html" style="background-image: url('icons/mc.png')">Minecraft</div>
+            <div class="gamePanel" data-link="1v1.html" style="background-image: url('icons/1v1.png')">1v1.LOL</div>
+            <div class="gamePanel" data-link="fnaf.html" style="background-image: url('icons/fnaf.png')">FNAF</div>
+            <div class="gamePanel" data-link="fnaf2.html" style="background-image: url('icons/fnaf2.png')">FNAF 2</div>
+            <div class="gamePanel" data-link="pvz.html" style="background-image: url('icons/pvz.png')">Plants Vs. Zombies</div>
+            <div class="gamePanel" data-link="slope.html" style="background-image: url('icons/sl.png')">Slope</div>
+            <div class="gamePanel" data-link="btd4.html" style="background-image: url('icons/btd4.png')">Bloons Tower Defense 4</div>
+            <div class="gamePanel" data-link="te.html" style="background-image: url('icons/te.png')">Terraria</div>
+            <div class="gamePanel" data-link="cm.html" style="background-image: url('icons/cm.png')">Coco Monkey</div>
+            <div class="gamePanel" data-link="tr.html" style="background-image: url('icons/tr.png')">Tomb Runner</div>
+            <div class="gamePanel" data-link="tr2.html" style="background-image: url('icons/tr2.png')">Temple Run 2</div>
+            <div class="gamePanel" data-link="whg.html" style="background-image: url('icons/whg.png')">World's Hardest Game</div>
+            <div class="gamePanel" data-link="whg2.html" style="background-image: url('icons/whg2.png')">World's Hardest Game 2</div>
+            <div class="gamePanel" data-link="ss.html" style="background-image: url('icons/ss.png')">Subway Surfers</div>
+            <div class="gamePanel" data-link="rb.html" style="background-image: url('icons/rb.png')">Retrobowl</div>
+            <div class="gamePanel" data-link="aow.html" style="background-image: url('icons/aow.png')">Age of War</div>
+            <div class="gamePanel" data-link="ab.html" style="background-image: url('icons/ab.png')">Angry Birds</div>
+            <div class="gamePanel" data-link="2048.html" style="background-image: url('icons/2048.png')">2048</div>
+            <div class="gamePanel" data-link="bl.html" style="background-image: url('icons/bl.png')">BitLife</div>
+            <div class="gamePanel" data-link="sw.html" style="background-image: url('icons/sw.png')">Swerve</div>
+            <div class="gamePanel" data-link="sp.html" style="background-image: url('icons/sp.png')">Spashal</div>
+            <div class="gamePanel" data-link="cio.html" style="background-image: url('icons/cio.png')">circloO</div>
+            <div class="gamePanel" data-link="cio2.html" style="background-image: url('icons/cio2.png')">circloO 2</div>
+            <div class="gamePanel" data-link="pio2.html" style="background-image: url('icons/pio2.png')">Paper.io 2</div>
+        </div>
+        <script>
+            var logo = document.getElementById("logo");
+            var rainbowAccentInterval = null;
+            var ranbowI = 1;
+
+            function setAccentColor() {
+                var accentColorRadioButtons = document.getElementsByName("accentColor");
+                for (let i = 0; i < accentColorRadioButtons.length; i++) {
+                    if (accentColorRadioButtons[i].checked) {
+                        if (accentColorRadioButtons[i].value == "blue") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#0000ff");
+                        } else if (accentColorRadioButtons[i].value == "green") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#00ff00");
+                        } else if (accentColorRadioButtons[i].value == "red") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#ff0000");
+                        } else if (accentColorRadioButtons[i].value == "orange") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#ff7f00");
+                        } else if (accentColorRadioButtons[i].value == "yellow") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#ffff00");
+                        } else if (accentColorRadioButtons[i].value == "pink") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#ff00ff");
+                        } else if (accentColorRadioButtons[i].value == "purple") {
+                            document.querySelector(":root").style.setProperty("--accentColor", "#72246c");
+                        } else if (accentColorRadioButtons[i].value == "rainbow") {
+                            rainbowI = 1;
+                            rainbowAccentInterval = setInterval(rainbowAccent, 250);
+                        }
+                    }
+                }
+            }
+
+            function rainbowAccent() {
+                var accentColorRadioButtons = document.getElementsByName("accentColor");
+                for (let i = 0; i < accentColorRadioButtons.length; i++) {
+                    if (accentColorRadioButtons[i].checked) {
+                        if (accentColorRadioButtons[i].value == "rainbow") {
+                            if (ranbowI == 1) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#ff0000");
+                            }
+                            if (ranbowI == 2) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#ff7f00");
+                            }
+                            if (ranbowI == 3) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#ffff00");
+                            }
+                            if (ranbowI == 4) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#00ff00");
+                            }
+                            if (ranbowI == 5) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#0000ff");
+                            }
+                            if (ranbowI == 6) {
+                                document.querySelector(":root").style.setProperty("--accentColor", "#72246c");
+                                ranbowI = 0;
+                            }
+                            ranbowI += 1;
+                        } else {
+                            clearInterval(rainbowAccentInterval);
+                        }
+                    }
+                }
+            }
+
+            function lightMode() {
+                var a = document.getElementsByTagName("a");
+                var h1 = document.getElementsByTagName("h1");
+                var h2 = document.getElementsByTagName("h2");
+                var h3 = document.getElementsByTagName("h3");
+                var label = document.getElementsByTagName("label");
+                var li = document.getElementsByTagName("li");
+                var p = document.getElementsByTagName("p");
+                var button = document.getElementsByTagName("button");
+                var option = document.getElementsByTagName("option");
+                var switchs = document.getElementsByClassName("switch");
+                document.body.style.backgroundColor = "#ffffff";
+                logo.style.filter = "brightness(0)"
+                for (let i = 0; i < a.length; i++) {
+                    a[i].className = "a-l";
+                }
+                for (let i = 0; i < h1.length; i++) {
+                    h1[i].className = "text-l";
+                }
+                for (let i = 0; i < h2.length; i++) {
+                    h2[i].className = "text-l";
+                }
+                for (let i = 0; i < h3.length; i++) {
+                    h3[i].className = "text-l";
+                }
+                for (let i = 0; i < label.length; i++) {
+                    label[i].className = "text-l";
+                }
+                for (let i = 0; i < li.length; i++) {
+                    li[i].className = "li-l";
+                }
+                for (let i = 0; i < p.length; i++) {
+                    p[i].className = "p-l";
+                }
+                for (let i = 0; i < button.length; i++) {
+                    if (button[i].getAttribute("class") !== "switch") {
+                        button[i].style.color = "#000000"
+                        button[i].style.backgroundColor = "";
+                        button[i].style.border = "";
+                        button[i].style.borderRadius = "";
+                    }
+                }
+                for (let i = 0; i < option.length; i++) {
+                    option[i].style.color = "#ffffff";
+                }
+                document.querySelector(":root").style.setProperty("--switch", "#cccccc");
+                for (let i = 0; i < switchs.length; i++) {
+                    if (switchs[i].getAttribute("data-state") == "off") {
+                        switchs[i].style.backgroundColor = "var(--switch)"
+                    }
+                    if (switchs[i].id == "appSlider") {
+                        switchs[i].style.backgroundColor = "var(--switch)"
+                    }
+                }
+            }
+
+            function darkMode() {
+                var a = document.getElementsByTagName("a");
+                var h1 = document.getElementsByTagName("h1");
+                var h2 = document.getElementsByTagName("h2");
+                var h3 = document.getElementsByTagName("h3");
+                var label = document.getElementsByTagName("label");
+                var li = document.getElementsByTagName("li");
+                var p = document.getElementsByTagName("p");
+                var button = document.getElementsByTagName("button");
+                var option = document.getElementsByTagName("option");
+                var switchs = document.getElementsByClassName("switch");
+                document.body.style.backgroundColor = "#000000";
+                logo.style.filter = "brightness(1)";
+                for (let i = 0; i < a.length; i++) {
+                    a[i].className = "a-d";
+                }
+                for (let i = 0; i < h1.length; i++) {
+                    h1[i].className = "text-d";
+                }
+                for (let i = 0; i < h2.length; i++) {
+                    h2[i].className = "text-d";
+                }
+                for (let i = 0; i < h3.length; i++) {
+                    h3[i].className = "text-d";
+                }
+                for (let i = 0; i < label.length; i++) {
+                    label[i].className = "text-d";
+                }
+                for (let i = 0; i < li.length; i++) {
+                    li[i].className = "li-d";
+                }
+                for (let i = 0; i < p.length; i++) {
+                    p[i].className = "p-d";
+                }
+                for (let i = 0; i < button.length; i++) {
+                    if (button[i].getAttribute("class") !== "switch") {
+                        button[i].style.color = "#ffffff";
+                        button[i].style.backgroundColor = "var(--switch)";
+                        button[i].style.border = "1px solid #ffffff";
+                        button[i].style.borderRadius = "2px";
+                    }
+                }
+                for (let i = 0; i < option.length; i++) {
+                    option[i].style.color = "#ffffff";
+                }
+                document.querySelector(":root").style.setProperty("--switch", "#3A393E");
+                for (let i = 0; i < switchs.length; i++) {
+                    if (switchs[i].getAttribute("data-state") == "off") {
+                        switchs[i].style.backgroundColor = "var(--switch)";
+                    }
+                }
+            }
+
+            function randomGame() {
+                var games = document.getElementsByClassName("gamePanel");
+                var random = Math.floor(Math.random() * games.length) + 1;
+                window.open("games/" + games[random].getAttribute("data-link"), "_blank");
+            }
+
+            function randomAccentColor() {
+                var accentColorRadioButtons = document.getElementsByName("accentColor");
+                var random = Math.floor(Math.random() * accentColorRadioButtons.length);
+                accentColorRadioButtons[random].checked = "true";
+                setAccentColor();
+            }
+
+            function removeClassroomIcon() {
+                var title = document.getElementsByTagName("title");
+                var link = document.getElementsByTagName("link");
+                for (let i = 0; i < title.length; i++) {
+                    title[i].remove();
+                }
+                for (let i = 0; i < link.length; i++) {
+                    if (link[i].getAttribute("rel") == "icon") {
+                        link[i].remove();
+                    }
+                }
+                var headElementExists = document.getElementsByTagName("head");
+                if (headElementExists == null) {
+                    var newHead = document.createElement("head");
+                    document.appendChild(newHead);
+                }
+                var newTitle = document.createElement("title");
+                newTitle.innerHTML = "nerds.corp";
+                document.head.appendChild(newTitle);
+                var newLink = document.createElement("link");
+                newLink.rel = "icon";
+                newLink.href = "nerds-icon.ico";
+                newLink.type = "image/x-icon";
+                document.head.appendChild(newLink);
+            }
+
+            function showClassroomIcon() {
+                var title = document.getElementsByTagName("title");
+                var link = document.getElementsByTagName("link");
+                for (let i = 0; i < title.length; i++) {
+                    title[i].remove();
+                }
+                for (let i = 0; i < link.length; i++) {
+                    if (link[i].getAttribute("rel") == "icon") {
+                        link[i].remove();
+                    }
+                }
+                var headElementExists = document.getElementsByTagName("head");
+                if (headElementExists == null) {
+                    var newHead = document.createElement("head");
+                    document.appendChild(newHead);
+                }
+                var newTitle = document.createElement("title");
+                newTitle.innerHTML = "Classes";
+                document.head.appendChild(newTitle);
+                var newLink = document.createElement("link");
+                newLink.rel = "icon";
+                newLink.href = "https://ssl.gstatic.com/classroom/favicon.png";
+                newLink.type = "image/x-icon";
+                document.head.appendChild(newLink);
+            }
+            document.addEventListener("keydown", (event) => {
+                var sciQSP = document.querySelector(":root").style.getPropertyValue("--sciDisplay");
+                if (event.keyCode == "80") {
+                    if (sciQSP == "visible") {
+                        document.querySelector(":root").style.setProperty("--sciDisplay", "hidden");
+                    } else {
+                        document.querySelector(":root").style.setProperty("--sciDisplay", "visible");
+                    }
+                }
+            });
+            var games = document.getElementsByClassName("gamePanel");
+            for (let i = 0; i < games.length; i++) {
+                games[i].addEventListener("click", () => {
+                    window.open("games/" + games[i].getAttribute("data-link"), "_blank");
+                });
+            }
+        </script>
+    </body>
+</html>
